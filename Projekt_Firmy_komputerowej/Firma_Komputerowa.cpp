@@ -582,13 +582,30 @@ int main(int argc, char **argv)
 			/*Zakonczenie wczytywania danych do fakturki :D*/
 
 			cout<<"		Faktura VAT"<<endl<<endl;
-			
+			  //int nr_wiersza=0;
+              //string wiersz;
+              
+              //plik.open("koszyk.txt");
+              
 				for(unsigned int i=1;i<=n;i++)
-
-				cout<<i<<"."<<endl;
-
-				
-
+				{
+					cout<<i<<".";
+					//for(unsigned i=0;i<=3;i++)
+					//{
+						//plik<<
+						//while (!(plik.eof()))
+						//{
+							//getline(plik,wiersz);
+							//plik >> slowo[x] >> cena[x] >> wybor[x];
+							
+							//cout << slowo[x] <<" "
+								 //<< cena[x] <<" x" 
+								 //<< wybor[x] <<endl;
+								 //x++;
+							//} plik.close();  
+					//}
+					cout<<endl;
+				}
 				cout<<endl<<"SUMA: "<<endl;
 
 				break;
