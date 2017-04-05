@@ -10,6 +10,8 @@
 
 #include <algorithm> 
 
+#include <istream>
+
 /* faktura kupna i faktura sprzedazy <- inny kolor*/
 
 
@@ -582,28 +584,37 @@ int main(int argc, char **argv)
 			/*Zakonczenie wczytywania danych do fakturki :D*/
 
 			cout<<"		Faktura VAT"<<endl<<endl;
-			  //int nr_wiersza=0;
-              //string wiersz;
+			
+              string slowo;
+              float cena;
+              unsigned int wybor;
+              int x=0;
               
-              //plik.open("koszyk.txt");
+              
               
 				for(unsigned int i=1;i<=n;i++)
 				{
 					cout<<i<<".";
-					//for(unsigned i=0;i<=3;i++)
-					//{
-						//plik<<
+					for(unsigned i=0;i<=3;i++)
+					{
+						plik.open("koszyk.txt");
 						//while (!(plik.eof()))
 						//{
-							//getline(plik,wiersz);
-							//plik >> slowo[x] >> cena[x] >> wybor[x];
+
+							plik >> slowo; 
+							plik >> cena; 
+							plik >> wybor;
+							plik.push_back(slowo);
+							plik.push_back(cena);
+							plik.push_back(wybor);
 							
-							//cout << slowo[x] <<" "
-								 //<< cena[x] <<" x" 
-								 //<< wybor[x] <<endl;
-								 //x++;
-							//} plik.close();  
-					//}
+							cout << slowo <<" "
+								 << cena  <<" x" 
+								 << wybor <<endl;
+								 x++;
+							//} 
+							plik.close();  
+					}
 					cout<<endl;
 				}
 				cout<<endl<<"SUMA: "<<endl;
