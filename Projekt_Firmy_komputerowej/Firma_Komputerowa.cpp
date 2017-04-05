@@ -591,7 +591,7 @@ int main(int argc, char **argv)
               int x=0;
               
               
-              
+              /*http://videokurs.pl/forum/c/wczytywanie-liczb-do-tablicy-z-pliku-tekstowego-t120.html*/
 				for(unsigned int i=1;i<=n;i++)
 				{
 					cout<<i<<".";
