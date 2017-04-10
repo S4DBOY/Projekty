@@ -12,6 +12,8 @@
 
 #include <istream>
 
+#include <vector>
+
 /* faktura kupna i faktura sprzedazy <- inny kolor*/
 
 
@@ -19,7 +21,6 @@
 			Aktualizacja Danych w pliku:
 	
 http://stackoverflow.com/questions/30827126/how-to-update-data-at-a-particular-line-in-a-file 	
-
 */
  /*
  		Obsluga plikow:
@@ -68,16 +69,11 @@ int main(int argc, char **argv)
 	/*<--   Koniec deklarowania zmiennych 	wybierania produktow	-->*/
 
 
-	unsigned int tablica_produktow[12]; //tablica dla poszczegolnych zmiennych; Np. 0 - laptop gamingowy <- ile razy zostal wybrany np.2x laptop gamingowy
+	unsigned int tablica_produktow[12]={0}; //tablica dla poszczegolnych zmiennych; Np. 0 - laptop gamingowy <- ile razy zostal wybrany np.2x laptop gamingowy
 	
 
-		/*	zerowanie tablicy	*/
-	int dlugosc_tablicy=sizeof(tablica_produktow);
-	
-	for(int x=0;x<=dlugosc_tablicy;x++)
-	{
-		tablica_produktow[x]=0;
-	}
+		/* Dlugosc tablicy	*/
+	int dlugosc_tablicy=12;
 
 	
 
@@ -565,60 +561,42 @@ int main(int argc, char **argv)
 			
 
 			n=l_gam+l_biur+l_multi+k_gam+k_biur+k_multi+r_cisco+r_netgear+r_pentagram+s_cisco+s_dell+s_HP; ///Zmienna przechowujaca ilosc kupionych w danej chwili towarow przez klienta
-
-			/*Wczytanie danych do fakturki :)*/
-			
-				std::ifstream myfile("koszyk.txt");
-
-				// new lines will be skipped unless we stop it from happening:    
-				myfile.unsetf(std::ios_base::skipws);
-
-				// count the newlines with an algorithm specialized for counting:
-				unsigned line_count = count(
-					istream_iterator<char>(myfile),
-					istream_iterator<char>(), 
-					'\n');
-
-				cout << "Lines: " << line_count << "\n";
 				
 			/*Zakonczenie wczytywania danych do fakturki :D*/
 
-			cout<<"		Faktura VAT"<<endl<<endl;
-			
-              string slowo;
-              float cena;
-              unsigned int wybor;
-              int x=0;
+			cout<<"\t\tFaktura VAT"<<endl<<endl;
               
-              
+              string danaNazwa[12]={0};
+			  float danaCena[12]={0};
+			  unsigned int danaWybor[12]={0};
               /*http://videokurs.pl/forum/c/wczytywanie-liczb-do-tablicy-z-pliku-tekstowego-t120.html*/
 				for(unsigned int i=1;i<=n;i++)
 				{
-					cout<<i<<".";
-					for(unsigned i=0;i<=3;i++)
-					{
-						plik.open("koszyk.txt");
-						//while (!(plik.eof()))
-						//{
-
-							plik >> slowo; 
-							plik >> cena; 
-							plik >> wybor;
-							plik.push_back(slowo);
-							plik.push_back(cena);
-							plik.push_back(wybor);
-							
-							cout << slowo <<" "
-								 << cena  <<" x" 
-								 << wybor <<endl;
-								 x++;
-							//} 
-							plik.close();  
-					}
+					cout<<i<<"."<<danaNazwa[i]<<" "<<danaCena[i]<<" x"<<danaWybor[i];
+					
+						vector<string> v;
+						string strLinia, strCalosc;
+						ifstream in("koszyk.txt");
+						while(getline(in,strLinia)) v.push_back(strLinia);
+						
+						
+						for(unsigned int i=0;i<v.size();i++)
+						{
+							if (i%3==0) danaNazwa[i]=v[i];
+							if (i%3==1) danaCena[i]=atof(v[i].c_str());
+							if (i%3==2) danaWybor[i]=atoi(v[i].c_str());
+						}
+						
 					cout<<endl;
 				}
-				cout<<endl<<"SUMA: "<<endl;
-
+				int suma_sum=0;
+				cout<<endl<<"SUMA: ";
+					for(int i=1;i<12;i++)
+					{
+						suma_sum+=danaCena[i]*danaWybor[i];
+					}
+				cout<<endl;
+				
 				break;
 
 				
@@ -637,27 +615,25 @@ int main(int argc, char **argv)
 		
 	/*Zapisywanie do pliku wartosci danych produktu	*/
 
-			plik.open( "koszyk.txt", ios::in | ios::out | ios::trunc);
+			ofstream plik("koszyk.txt");
 			
 			if( plik.good() == true )
 			{
-				for(int x=0;x<=dlugosc_tablicy;x++)
+				for(int x=0;x<dlugosc_tablicy;x++)
 				{
-					if(tablica_produktow[x]!=0)
+					if(tablica_produktow[x]>0)
 					{
 						/*tablica stringow(nazw),floatow(ceny) oraz unsigned int(ilosc)*/
 								
-					 plik<<tablica_nazw[x]<<endl
-						<<tablica_cen[x]<<endl
-						<<tablica_produktow[x]<<endl;
-					 plik.flush();
+					 plik<<tablica_nazw[x]<<endl;
+					 plik<<tablica_cen[x]<<endl;
+					 plik<<tablica_produktow[x]<<endl;
 						
 					}
 				}
 				
 				plik.close();
-			} else 
-			cout << "Dostep do pliku zostal zabroniony!" << endl;
+			}
 			/*Koniec zapisywania od pliku*/
 		
 		goto menu;	
@@ -688,4 +664,3 @@ int main(int argc, char **argv)
 	return 0;
 
 }
-
