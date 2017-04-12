@@ -157,7 +157,7 @@ int main(int argc, char **argv)
 
 	fstream plik; //plik txt
 
-			  /* co zostaje zapisane do pliku: nazwa produktu,cena,ile razy dany produkt został wybrany */
+			  /* co zostaje zapisane do pliku: nazwa produktu,cena,ile razy dany produkt zostaĹ‚ wybrany */
 
 	
 
@@ -201,7 +201,7 @@ int main(int argc, char **argv)
 
 		{
 
-		system("clear");
+		system("cls");
 
 		cout<<"		SKLEP"<<endl<<endl
 
@@ -538,7 +538,7 @@ int main(int argc, char **argv)
 
 		case 2:
 
-		system("clear");
+		system("cls");
 
 		cout<<"		MAGAZYN"<<endl<<endl
 
@@ -556,7 +556,7 @@ int main(int argc, char **argv)
 
 		case 3:
 	{
-			system("clear");
+			system("cls");
 
 			
 
@@ -566,29 +566,32 @@ int main(int argc, char **argv)
 
 			cout<<"\t\tFaktura VAT"<<endl<<endl;
               
-              string danaNazwa[12]={0};
+              string danaNazwa[12];
 			  float danaCena[12]={0};
 			  unsigned int danaWybor[12]={0};
               /*http://videokurs.pl/forum/c/wczytywanie-liczb-do-tablicy-z-pliku-tekstowego-t120.html*/
-				for(unsigned int i=1;i<=n;i++)
+			 
+			  ifstream settings("koszyk.txt");
+			  if(settings.good())
+			  { 
+			  	int i=0;
+			  	while(settings.eof())
+			  	{
+				  	settings >> danaNazwa[i];
+					settings >> danaCena[i];
+					settings >> danaWybor[i];
+					i++;
+				  }
+				for(unsigned int i=0;i<=n;i++)
 				{
+					
 					cout<<i<<"."<<danaNazwa[i]<<" "<<danaCena[i]<<" x"<<danaWybor[i];
 					
-						vector<string> v;
-						string strLinia, strCalosc;
-						ifstream in("koszyk.txt");
-						while(getline(in,strLinia)) v.push_back(strLinia);
-						
-						
-						for(unsigned int i=0;i<v.size();i++)
-						{
-							if (i%3==0) danaNazwa[i]=v[i];
-							if (i%3==1) danaCena[i]=atof(v[i].c_str());
-							if (i%3==2) danaWybor[i]=atoi(v[i].c_str());
-						}
-						
+
+
 					cout<<endl;
 				}
+			}
 				int suma_sum=0;
 				cout<<endl<<"SUMA: ";
 					for(int i=1;i<12;i++)
@@ -603,7 +606,7 @@ int main(int argc, char **argv)
 				}
 		case 4:
 
-		system("clear");
+		system("cls");
 
 		cout<<"Wpadnij do nas jeszcze ;)";
 
@@ -653,7 +656,7 @@ int main(int argc, char **argv)
 
 		default:
 
-		system("clear");
+		system("cls");
 
 		cout<<"Wrong!";
 
