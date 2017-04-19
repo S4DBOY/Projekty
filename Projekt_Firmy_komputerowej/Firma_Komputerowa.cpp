@@ -37,15 +37,31 @@ int dostepnosc(int a)/* funkcja do podswietlania liczby produktow */
 						{
                              SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , FOREGROUND_GREEN | FOREGROUND_INTENSITY );
 						     cout<<danaWybor_Ile[a];
-					         SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , 0|15);
+					         SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED );
                         }
                         else{
                              SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , FOREGROUND_RED | FOREGROUND_INTENSITY );
 						     cout<<danaWybor_Ile[a];
-					         SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , 0|15);
+					         SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED );
                         }	
 }
 
+void czerwony()
+{
+	                             SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , FOREGROUND_RED | FOREGROUND_INTENSITY );
+}
+void zolty()
+{
+	                             SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY );
+}
+void standard()
+{
+								 SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED );
+}
+void niebieski()
+{
+	 							SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ) , FOREGROUND_BLUE | FOREGROUND_INTENSITY );
+}
 int main(int argc, char **argv)
 
 {
@@ -128,7 +144,7 @@ int main(int argc, char **argv)
 /* koniec listy produktow	*/
 
 
-/*				Menu			*/
+
 
 
 	/*Wczytanie danych z "Magazynu" */
@@ -164,6 +180,8 @@ int main(int argc, char **argv)
 		}
 	Sprzedaz.close();
 /* Koniec wczytywania danych */
+
+/*				Menu			*/
 	menu:
          
 	        //Zapisywanie do pliku wartosci danych produktu
@@ -172,7 +190,7 @@ int main(int argc, char **argv)
 			
 			if( Zapis.good() == true )
 			{
-				for(int x=0;x<=dlugosc_tablicy;x++)
+				for(int x=0;x<dlugosc_tablicy;x++)
 				{
 					 Zapis <<danaWybor_Ile[x]<<endl;
 				}
@@ -182,7 +200,7 @@ int main(int argc, char **argv)
 			//Koniec zapisywania do pliku
 			
    //Zapisywanie do pliku wartosci danych produktu
-   for(int x=0;x<=dlugosc_tablicy;x++){
+   for(int x=0;x<dlugosc_tablicy;x++){
            
                  danaWybor_Sprz[x]+=tablica_produktow[x];
                  }
@@ -190,7 +208,7 @@ int main(int argc, char **argv)
 			
 			if( Zapis_Sprz.good() == true )
 			{
-				for(int x=0;x<=dlugosc_tablicy;x++)
+				for(int x=0;x<dlugosc_tablicy;x++)
 				{
 					 Zapis_Sprz << danaWybor_Sprz[x] <<endl;
 				}
@@ -198,6 +216,23 @@ int main(int argc, char **argv)
              Zapis_Sprz.close();
 			}
 			//Koniec zapisywania do pliku
+			
+	/*Wczytanie danych z "Magazynu" */
+	
+	a=0;
+	Magazyn.open("magazyn.txt");
+						
+		while(Magazyn.good())
+		{	
+			if (!Magazyn.eof())
+			{
+				Magazyn >> danaWybor_Ile[a];
+				a++;
+			}
+		}
+	Magazyn.close();
+
+/* Koniec wczytywania danych */
     cout<<"\t\tMENU\n"
         <<"1.Sprzedaz"<<endl
 		<<"2.Magazyn"<<endl
@@ -568,8 +603,9 @@ int main(int argc, char **argv)
 		
 		case 2: /* Magazyn */
 		{
+			Magazyn:
 			system("cls");
-
+		
 			cout<<"\t\tMAGAZYN\n\n"
 
 				<<"1.Wyswietl towary"<<endl // odczyt z pliku magazyn.txt
@@ -594,7 +630,9 @@ int main(int argc, char **argv)
                         dostepnosc(a);
                         cout<<"\n";
                     }
-				}break;
+				}
+				system("pause");
+				goto Magazyn;
 				
 				case 2: /* Pokazywanie zyskow z podatkiem ! */
                      {
@@ -609,6 +647,7 @@ int main(int argc, char **argv)
                         
                         cout<<"\nZysk: "<<suma_sprz<<"PLN Brutto";
                     }
+                    system("pause");
                     break;
 
                 
@@ -664,7 +703,7 @@ int main(int argc, char **argv)
                     									cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[0];
                     									l_gam=1; // <-- ten produkt zostal wybrany
-                    									goto menu;
+                    									goto fakturka;
     
                     								case 2:
 
@@ -672,7 +711,7 @@ int main(int argc, char **argv)
                     									cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[1];
                     									l_biur=1;	// <-- ten produkt zostal wybrany
-                                                        goto menu;
+                                                        goto fakturka;
 
                     								case 3:
                                                     if(danaWybor_Ile[2]>0)
@@ -681,7 +720,7 @@ int main(int argc, char **argv)
                     									cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[2];
                     									l_multi=1;	// <-- ten produkt zostal wybrany
-                    									goto menu;
+                    									goto fakturka;
                                                     }
 
                     								default:
@@ -726,7 +765,7 @@ int main(int argc, char **argv)
                     									cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[3];
                         								k_gam=1; 	// <-- ten produkt zostal wybrany
-                        								goto menu;
+                        								goto fakturka;
                     								
                     
                     								case 2:
@@ -735,7 +774,7 @@ int main(int argc, char **argv)
                     									cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[4];
                         								k_biur=1;	// <-- ten produkt zostal wybrany
-                        								goto menu;
+                        								goto fakturka;
                     
                     								
                     
@@ -746,7 +785,7 @@ int main(int argc, char **argv)
                                                         cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[5];
                                                         k_multi=1;	// <-- ten produkt zostal wybrany
-                        								goto menu;
+                        								goto fakturka;
                     
                     								
                     
@@ -777,7 +816,7 @@ int main(int argc, char **argv)
                                         int wybor_router=0;
                     					cin>>wybor_router;
                     
-                    		  /*	Tu nastepuje zapisanie do pliku zwanego koszyk.txt		*/
+                    		  /*	Tu nastepuje zapisanie do pliku zwanego magazyn.txt		*/
                     
                     							switch(wybor_router)
                     
@@ -790,7 +829,7 @@ int main(int argc, char **argv)
                     									cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[6];
                                                         r_cisco=1; 	// <-- ten produkt zostal wybrany
-                        								goto menu;
+                        								goto fakturka;
                         								
                     								case 2:
 
@@ -798,7 +837,7 @@ int main(int argc, char **argv)
                     									cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[7];
                         								r_netgear=1; // <-- ten produkt zostal wybrany
-                        								goto menu;
+                        								goto fakturka;
 
                     								case 3:
 
@@ -806,7 +845,7 @@ int main(int argc, char **argv)
                                                         cout<<"Ile potrzebujesz?";
                     									cin>>tab_potrzeb[8];
                                                         r_pentagram=1; // <-- ten produkt zostal wybrany
-                        								goto menu;
+                        								goto fakturka;
                     
                     								default:
                     
@@ -843,7 +882,7 @@ int main(int argc, char **argv)
                                                             cout<<"Ile potrzebujesz?";
                                                             cin>>tab_potrzeb[9];
                                                             s_cisco=1; // <-- ten produkt zostal wybrany
-                                                            goto menu;
+                                                            goto fakturka;
 
                     									case 2:
 
@@ -851,7 +890,7 @@ int main(int argc, char **argv)
                                                             cout<<"Ile potrzebujesz?";
                                                             cin>>tab_potrzeb[10];
                                                             s_dell=1;	// <-- ten produkt zostal wybrany
-                        									goto menu;
+                        									goto fakturka;
 
                     									case 3:
 
@@ -859,7 +898,7 @@ int main(int argc, char **argv)
                                                             cout<<"Ile potrzebujesz?";
                     									    cin>>tab_potrzeb[11];
                                                             s_HP=1; // <-- ten produkt zostal wybrany
-                        									goto menu;
+                        									goto fakturka;
 
                     									default:
                     
@@ -869,9 +908,128 @@ int main(int argc, char **argv)
                     					}
                     
                     				}     
-                }
-                
-                break;
+                fakturka:
+					cout<<"Czy chcesz wyswietlic fakturke?(t/n) ";
+					char wybor;
+					cin>>wybor;
+					if(wybor=='t'||wybor=='T')
+					{
+							
+					  /* To zostaje zapisane do pliku: nazwa produktu,cena oraz ile razy dany produkt zostal wybrany */
+
+
+								ofstream kup("kupione.txt");
+								
+								if( kup.good() == true )
+								{
+									for(int x=0;x<dlugosc_tablicy;x++)
+									{
+										if(tab_potrzeb[x]>0)
+										{
+											/*tablica stringow(nazw),floatow(ceny) oraz unsigned int(ilosc)*/
+													
+										 kup<<tablica_nazw[x]<<endl;
+										 kup<<tablica_cen[x]<<endl;
+										 kup<<tab_potrzeb[x]<<endl;
+											
+										}
+									}
+									
+									kup.close();
+								}
+						/* Koniec zapisywania do pliku */
+
+								
+
+								n=l_gam+l_biur+l_multi+k_gam+k_biur+k_multi+r_cisco+r_netgear+r_pentagram+s_cisco+s_dell+s_HP; ///Zmienna przechowujaca ilosc kupionych w danej chwili towarow przez klienta
+									
+								
+								            
+			              string danaNazwa[12];
+						  float danaCena[12]={0};
+						  unsigned int danaWybor[12]={0};
+						  			 
+						  ifstream Faktura;
+						  Faktura.open("kupione.txt");
+						  
+						  	int a=0;
+							while(Faktura.good())
+							{	
+								if (!Faktura.eof()){
+									
+								getline(Faktura,danaNazwa[a]);
+								Faktura >> danaCena[a];
+								Faktura >> danaWybor[a];
+								Faktura.ignore(numeric_limits<streamsize>::max(), '\n');
+								a++;
+								}
+							  }
+							  Faktura.close();
+							  zolty(); cout<<"\t\tFaktura kupna\n\n"; standard();
+							  
+								int x=0;
+							  	int z=danaNazwa[0].length();
+								int g=26-z;
+								int ilosc=(g+z)-4;
+
+							  cout<<"Lp.|"<<"\t Nazwa"<<setfill(' ')<<setw(ilosc)<<"|Ilosc|"<<"Jm "<<"|Cena netto|"<<"VAT(\%)|"<<"Wartosc Netto |"<<"Wartosc brutto "<<endl;
+							for(unsigned int i=0;i<n;i++)
+							{
+								z=danaNazwa[i].length();
+								g=26-z;
+								x++;
+								float h=x+1%10;
+								if(h>=1) //gdy LP nie przekracza wartosci 10 nie usuwaj jednej spacji
+								{
+			                         if(danaCena[i]>=1000)/* ilosc spacji tak,aby pokrywalo sie z ramka cena/wartosc netto*/
+			                         {       
+			    						cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"          |"<<danaCena[i]*1.23;
+			                         }
+			                         else if(danaCena[i]>=100&&danaCena[i]<=1000)
+			                         {
+			                        	cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                         }
+			                         else if(danaCena[i]<=100)
+			                         {
+			                         	cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"            |"<<danaCena[i]*1.23;     
+			                         }
+			                    }
+								else//przekracza lub jest rowne 10
+								{
+			                         if(danaCena[i]>=1000)
+			                         {       
+			    						cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                         }
+			                         else if(danaCena[i]>=100&&danaCena[i]<=1000)
+			                         {
+			                        	cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                         }
+			                         else if(danaCena[i]<=100)
+			                         {
+			                         	cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"             |"<<danaCena[i]*1.23;     
+			                         }
+
+								}
+
+
+								cout<<endl;
+							}
+						
+							float suma_sum=0;
+							cout<<"\nSUMA: ";
+								for(int i=0;i<12;i++)
+								{
+									suma_sum+=(danaCena[i]*danaWybor[i])*1.23;
+								}
+								cout<<suma_sum<<" PLN\n";
+							system("pause");
+			                
+				
+					}else{goto menu;}
+				}break;
+
+				case 4:
+				break;
 				default:
 				system("cls");
 
@@ -880,7 +1038,29 @@ int main(int argc, char **argv)
 				goto menu;
 			}
 		
-        /*<-- TU stworzyæ fakture kupna oraz zapisywanie(aktualizacja) do pliku magazyn.txt -->*/
+        /*<-- TU stworzyï¿½ fakture kupna oraz zapisywanie(aktualizacja) do pliku magazyn.txt -->*/
+        
+          /* To zostaje zapisane do pliku: nazwa produktu,cena oraz ile razy dany produkt zostal wybrany */
+
+
+			ofstream Magazyn_kupno("magazyn.txt");
+			
+			if( Magazyn_kupno.good() == true )
+			{
+				for(int x=0;x<dlugosc_tablicy;x++)
+				{
+					danaWybor_Ile[x]+=tab_potrzeb[x];
+						/*tablica stringow(nazw),floatow(ceny) oraz unsigned int(ilosc)*/
+								
+					 Magazyn_kupno<<danaWybor_Ile[x]<<endl;
+						
+					
+				}
+				
+				Magazyn_kupno.close();
+			}
+	/* Koniec zapisywania do pliku */
+        
         }
 		break;
      
@@ -895,7 +1075,7 @@ int main(int argc, char **argv)
 			
 			if( plik.good() == true )
 			{
-				for(int x=0;x<=dlugosc_tablicy;x++)
+				for(int x=0;x<dlugosc_tablicy;x++)
 				{
 					if(tablica_produktow[x]>0)
 					{
@@ -917,9 +1097,9 @@ int main(int argc, char **argv)
 			n=l_gam+l_biur+l_multi+k_gam+k_biur+k_multi+r_cisco+r_netgear+r_pentagram+s_cisco+s_dell+s_HP; ///Zmienna przechowujaca ilosc kupionych w danej chwili towarow przez klienta
 				
 			
-
+			niebieski();
 			cout<<"\t\tFaktura VAT\n\n";
-              
+              standard();
               string danaNazwa[12];
 			  float danaCena[12]={0};
 			  unsigned int danaWybor[12]={0};
@@ -998,7 +1178,7 @@ int main(int argc, char **argv)
 						suma_sum+=(danaCena[i]*danaWybor[i])*1.23;
 					}
 					cout<<suma_sum<<" PLN\n";
-				
+				system("pause");
 				break;
 
 				
