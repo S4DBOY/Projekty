@@ -610,7 +610,7 @@ int main(int argc, char **argv)
 
 				<<"1.Wyswietl towary"<<endl // odczyt z pliku magazyn.txt
 				<<"2.Ile zostalo sprzedane?"<<endl //odczytuje te wartosci ze specjalnego pliku o nazwie sprzedane.txt
-				<<"3.Co chcesz dokupic?"<<endl // tu znajduje się podobne menu jak na początku, lecz zostaje zapisane do pliku magazyn.txt
+				<<"3.Co chcesz dokupic?"<<endl // tu znajduje si\u0119 podobne menu jak na pocz\u0105tku, lecz zostaje zapisane do pliku magazyn.txt
 				<<"4.Wyjscie"<<endl;
 		
 		int wybor_magazyn=0;
@@ -965,7 +965,9 @@ int main(int argc, char **argv)
 								}
 							  }
 							  Faktura.close();
-							  zolty(); cout<<"\t\tFaktura kupna\n\n"; standard();
+							  zolty(); 
+                              cout<<"\t\tFaktura kupna\n\n"; 
+                              standard();
 							  
 								int x=0;
 							  	int z=danaNazwa[0].length();
@@ -1038,7 +1040,7 @@ int main(int argc, char **argv)
 				goto menu;
 			}
 		
-        /*<-- TU stworzy� fakture kupna oraz zapisywanie(aktualizacja) do pliku magazyn.txt -->*/
+        /*<-- TU stworzy\ufffd fakture kupna oraz zapisywanie(aktualizacja) do pliku magazyn.txt -->*/
         
           /* To zostaje zapisane do pliku: nazwa produktu,cena oraz ile razy dany produkt zostal wybrany */
 
@@ -1126,7 +1128,7 @@ int main(int argc, char **argv)
 				  int x=0;
 				  	int z=danaNazwa[0].length();
 					int g=26-z;
-					int ilosc=(g+z)-3;
+					int ilosc=(g+z)-4;
 					
 				  cout<<"Lp.|"<<"\t Nazwa"<<setfill(' ')<<setw(ilosc)<<"|Ilosc|"<<"Jm "<<"|Cena netto|"<<"VAT(\%)|"<<"Wartosc Netto |"<<"Wartosc brutto "<<endl;
 				for(unsigned int i=0;i<n;i++)
