@@ -984,32 +984,148 @@ int main(int argc, char **argv)
 								if(h>=1) //gdy LP nie przekracza wartosci 10 nie usuwaj jednej spacji
 								{
 			                         if(danaCena[i]>=1000)/* ilosc spacji tak,aby pokrywalo sie z ramka cena/wartosc netto*/
-			                         {       
-			    						cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"          |"<<danaCena[i]*1.23;
-			                         }
+			                         {
+										 if(danaWybor[i]>10)
+										 {       
+				    						cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"          |"<<danaCena[i]*1.23;
+				                     	 }
+				                     	 else if(danaWybor[i]<=10&&danaWybor[i]>100)
+										 {       
+				    						cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"   |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"          |"<<danaCena[i]*1.23;
+				                     	 }
+				                     	 else if(danaWybor[i]<=100 && danaWybor[i]>1000)
+										 {       
+				    						cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"  |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"          |"<<danaCena[i]*1.23;
+				                     	 }
+				                     	 else if(danaWybor[i]<=1000 && danaWybor[i]>10000)
+										 {       
+				    						cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<" |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"          |"<<danaCena[i]*1.23;
+				                     	 }
+				                     	 else if(danaWybor[i]<=10000 && danaWybor[i]>100000)
+										 {       
+				    						cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"|szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"          |"<<danaCena[i]*1.23;
+				                     	 }
+									 }
 			                         else if(danaCena[i]>=100&&danaCena[i]<=1000)
 			                         {
-			                        	cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
-			                         }
+			                         	if(danaWybor[i]>10)
+			                         	{
+			                        		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		else if(danaWybor[i]<=10&&danaWybor[i]>=100)
+			                         	{
+			                        		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"   |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		else if(danaWybor[i]<=100 && danaWybor[i]>1000)
+			                         	{
+			                        		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"  |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		else if(danaWybor[i]<=1000 && danaWybor[i]>10000)
+			                         	{
+			                        		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<" |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		else if(danaWybor[i]<=10000 && danaWybor[i]>100000)
+			                         	{
+			                        		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"|szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+									 }
 			                         else if(danaCena[i]<=100)
 			                         {
-			                         	cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"            |"<<danaCena[i]*1.23;     
-			                         }
+			                         	if(danaWybor[i]>10)
+			                         	{
+			                         		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"            |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		else if(danaWybor[i]<=10&&danaWybor[i]>=100)
+			                         	{
+			                         		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"   |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"            |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		else if(danaWybor[i]<=100&&danaWybor[i]>=1000)
+			                         	{
+			                         		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"  |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"            |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		else if(danaWybor[i]<=1000&&danaWybor[i]>=10000)
+			                         	{
+			                         		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<" |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"            |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		else if(danaWybor[i]<=10000&&danaWybor[i]>=100000)
+			                         	{
+			                         		cout<<x<<"  |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"|szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"            |"<<danaCena[i]*1.23;     
+			                     		}
+									 }
 			                    }
 								else//przekracza lub jest rowne 10
 								{
 			                         if(danaCena[i]>=1000)
 			                         {       
-			    						cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
-			                         }
+			                         	if(danaWybor[i]>10)
+			                         	{
+			    							cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                         	}
+			                         	else if(danaWybor[i]<=10&&danaWybor[i]>=100)
+			                         	{
+			    							cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"   |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                         	}
+			                         	else if(danaWybor[i]<=100&&danaWybor[i]>=1000)
+			                         	{
+			    							cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"  |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                         	}
+			                         	else if(danaWybor[i]<=1000&&danaWybor[i]>=10000)
+			                         	{
+			    							cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<" |szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                         	}
+			                         	else if(danaWybor[i]<=10000&&danaWybor[i]>=100000)
+			                         	{
+			    							cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"|szt|"<<danaCena[i]<<"      | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                         	}
+									 }
 			                         else if(danaCena[i]>=100&&danaCena[i]<=1000)
 			                         {
-			                        	cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
-			                         }
+			                         	if(danaWybor[i]>10)
+			                         	{
+			                        		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		else if(danaWybor[i]<=10&&danaWybor[i]>=100)
+			                         	{
+			                        		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"   |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		else if(danaWybor[i]<=100&&danaWybor[i]>=1000)
+			                         	{
+			                        		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"  |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		else if(danaWybor[i]<=1000&&danaWybor[i]>=10000)
+			                         	{
+			                        		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<" |szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		else if(danaWybor[i]<=10000&&danaWybor[i]>=100000)
+			                         	{
+			                        		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"|szt|"<<danaCena[i]<<"       | 23\%  |"<<danaCena[i]<<"           |"<<danaCena[i]*1.23;
+			                     		}
+			                     		
+									 }
 			                         else if(danaCena[i]<=100)
 			                         {
-			                         	cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"             |"<<danaCena[i]*1.23;     
-			                         }
+			                         	if(danaWybor[i]>10)
+			                         	{
+			                         		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"    |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"             |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		else if(danaWybor[i]<=10&&danaWybor[i]>=100)
+			                         	{
+			                         		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"   |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"             |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		else if(danaWybor[i]<=100&&danaWybor[i]>=1000)
+			                         	{
+			                         		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"  |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"             |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		else if(danaWybor[i]<=1000&&danaWybor[i]>=10000)
+			                         	{
+			                         		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<" |szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"             |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		else if(danaWybor[i]<=10000&&danaWybor[i]>=100000)
+			                         	{
+			                         		cout<<x<<" |"<<danaNazwa[i]<<setfill (' ')<<setw(g)<<" |"<<danaWybor[i]<<"|szt|"<<danaCena[i]<<"        | 23\%  |"<<danaCena[i]<<"             |"<<danaCena[i]*1.23;     
+			                     		}
+			                     		
+									 }
 
 								}
 
@@ -1206,3 +1322,4 @@ int main(int argc, char **argv)
 	return 0;
 
 }
+
